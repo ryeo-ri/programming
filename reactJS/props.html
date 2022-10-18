@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id ="root"></div>    
+    </body>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        
+        function Btn({ text, changeValue }){
+            console.log(text, "was render")
+            return <button 
+                        onClick= {changeValue}
+                        style= {{
+                        backgroundColor: "tomato",
+                        color:"white",
+                        padding:"10px 20px",
+                        border: 0,
+                        borderRadius: 10,
+                        fontSize: 16
+                        }}            
+            >
+             {text} </button>
+        }
+
+        function ConfirmBtn(){
+            return <button> Confirm </button>
+        }
+        const MemorizedBtn = React.memo(Btn);
+        function App(){
+            const [value, setValue] = React.useState("Save Changes");
+            const changeValue = () => setValue("Revent Changes");
+            return (
+                <div>
+                    <MemorizedBtn text= {value} changeValue={changeValue} />
+                    <MemorizedBtn text="Continue" />
+                </div>
+            );
+        }
+
+        const root = document.getElementById("root");
+        ReactDOM.render(<App />, root);
+    </script>
+    
+    </html>
