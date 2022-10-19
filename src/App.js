@@ -1,29 +1,42 @@
-
-import { useState , useEffect} from "react";
+import { useState } from "react";
 
 function App() {
-  const [counter, setCounter]= useState(0);
-  const [keyword, setKeyword] = useState("");
-  const onClick = () => setCounter((prev) => prev + 1);
-  const onChange = (event) =>  setKeyword(event.target.value);
-  useEffect(()=> {
-    console.log("i run only one")
-  },[]);
-  useEffect(()=> {
-    if(keyword !== "" && keyword.length>5){
-      console.log("keword change")
+  const [todo, setTodo] = useState("");
+  const [todos, setTodos] =useState([]);
+  const onChange = (event) => setTodo(event.target.value);
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (todo === ""){
+      return;
     }
-  },[keyword]);
+    setTodo("");
+    setTodos(currentArray => [todo, ...currentArray]);
+  };
+  const deleteBtn = (index) => {
+    setTodos(todos.filter((item, todoIndex) => index !== todoIndex));
+  };
   
-  useEffect(()=> {
-    console.log("counter")
-  },[counter]);
-
+  const modifyBtn = (index) => {
+    const li = index.target.parentElement;
+    
+  }
+  console.log(todos);
   return (
     <div id="root"> 
-    <input value={keyword} onChange={onChange} type = "text" placeholder="Search here..." />
-      <h1> {counter} </h1>
-    <button onClick={onClick}> click me! </button>
+      <h1> my to do ({todos.length})</h1>
+      <form onSubmit={onSubmit}>
+        <input value={todo} onChange={onChange} type="text" placeholder="Write your to do..." /> 
+        <button>ADD TODO</button>
+      </form>
+      <hr />
+      {todos.map((item, index)=> (
+        <li key={index}>
+          {item}
+        <button onClick={modifyBtn}>수정</button>  
+        <button onClick={()=>deleteBtn(index)}>삭제</button>
+        </li>
+      ))}
+
     </div>
   );
 }
