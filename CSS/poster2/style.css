@@ -1,0 +1,62 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+body {
+  background-color:#DDE1D4;
+  padding:15px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  max-width: 650px;
+  width: 100%;
+  height: 100vh;
+  margin:0 auto;
+
+  display: grid;
+  grid-template: 
+    "header header" 1fr
+    "bad bad-next" 4fr
+    "religion religion" 3fr / 2fr 1fr;
+  gap: 15px;
+}
+
+header{
+  background-color: black;
+  color: white;
+  grid-area: header;
+  display: flex;
+  justify-content:space-between;
+  align-items: flex-end;
+  padding: 15px;
+  font-weight: 500;
+  
+}
+
+
+div#bad{
+  background-color: orangered;
+  grid-area: bad;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+}
+
+div#bad-next{
+  background-color: orangered;
+  grid-area: bad-next;
+}
+
+.big{
+  font-size: 170px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+.smail{
+  color:#DDE1D4;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+footer{
+  padding: 10px;
+  background-color: orangered;
+  grid-area: religion; 
+}
