@@ -5,6 +5,5 @@ function handTitleClick(){
     title.style.color ="bule";
 }
 
-
  title.addEventListener("click", handTitleClick);
 
